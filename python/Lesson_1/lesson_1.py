@@ -46,7 +46,7 @@ while input_number not in (my_number, 'Q'):
             print("такое число уже было, придумайте другое") 						  
         if DEBUG:
             print("использованные числа:", entries_number)
-    else:
+    elif input_number != 'Q':
         print("а это непохоже на число от 1 до 100 (для выхода введите Q)") 						  
 
 
