@@ -1,5 +1,12 @@
-документация по Git:
+РґРѕРєСѓРјРµРЅС‚Р°С†РёСЏ РїРѕ Git:
 http://git-scm.com/book
 
-синтаксис постов:
+Р·Р°РєРёРЅСѓС‚СЊ С„Р°Р№Р»С‹:
+git status
+add <file>
+git commit -a -m "РєРѕРјРјРµРЅС‚Р°СЂРёР№"
+git push
+
+СЃРёРЅС‚Р°РєСЃРёСЃ РїРѕСЃС‚РѕРІ:
 http://heller.ru/course/faq.php?mode=bbcode
+
