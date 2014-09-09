@@ -1,1 +1,5 @@
+документация по Git:
 http://git-scm.com/book
+
+синтаксис постов:
+http://heller.ru/course/faq.php?mode=bbcode
