@@ -3,7 +3,7 @@
 ## heller.ru/course
 ## lesson 1
 ## http://heller.ru/course/viewtopic.php?f=7&t=11
-## https://github.com/SergeyTrunov/course/python/Lesson_1
+## https://github.com/SergeyTrunov/course/tree/master/python/Lesson_1
 ##----------------------------------------------------------------------
 
 
