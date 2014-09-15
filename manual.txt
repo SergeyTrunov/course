@@ -10,3 +10,6 @@ git push
 синтаксис постов:
 http://heller.ru/course/faq.php?mode=bbcode
 
+
+питон-консоль
+http://www.brython.info/tests/console.html
