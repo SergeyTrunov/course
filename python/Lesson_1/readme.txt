@@ -10,3 +10,7 @@ http://heller.ru/course/viewtopic.php?f=7&t=11
 нашёл загаданное число.
 
 https://www.python.org/ftp/python/3.4.1/python-3.4.1.msi
+
+
+сдал:
+http://heller.ru/course/viewtopic.php?f=2&t=25&p=1243#p1265
