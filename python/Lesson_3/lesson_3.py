@@ -8,6 +8,7 @@
 
 import random
 import string
+import json
 
 DEBUG = False # True # 
 
@@ -147,7 +148,62 @@ def random_phone_book(n):
 
     f.close()
 
-    return phone, name
+# 3.4a
+def book2dict(s):
+    """
+    прочитать телефонную книгу в словарь
+    телефон:абонент
+    """
+    d={}
+    f = open(s, 'r')
+    for line in f:
+        l = line.strip().split(":")
+        d[l[0]]=l[1]
+    return d
+
+# 3.4б
+def book2list(s):
+    """
+    прочитать телефонную книгу в список кортежей
+    телефон:абонент
+    """
+    d=[]
+    f = open(s, 'r')
+    for line in f:
+        l = line.strip().split(":")
+        t = (int(l[0]) ,l[1])
+        if DEBUG:
+            print(type(t), t) 
+        d.append(t)
+
+    f.close()
+    return d
+
+# 3.4в
+def book2sortlist(s):
+    """
+    прочитать телефонную книгу в список кортежей
+    телефон:абонент
+    """
+    d=[]
+    f = open(s, 'r')
+    for line in f:
+        l = line.strip().split(":")
+        t = (int(l[0]) ,l[1])
+        if DEBUG:
+            print(type(t), t) 
+        d.append(t)
+
+    f.close()
+    d = sorted(d, key=lambda x: x[0])
+    return d
+     
+
+def get_name(phone):
+    """
+    get name abonent from phonebooks
+    """
+    return "Ascfrex"
 
 
 #
@@ -185,5 +241,20 @@ def random_phone_book(n):
 
 
 # 3.4
-print(random_phone_book(100))
+# random_phone_book(7)
+
+# 3.4а
+# b = book2dict('random_phone_book.dat')
+# print(json.dumps(b, sort_keys=True, indent=4))
+#
+# 3.4б
+# b = book2list('random_phone_book.dat')
+# print(b)
+#
+# 3.4в
+b = book2sortlist('random_phone_book.dat')
+# print(b)
+print(json.dumps(b, sort_keys=False, indent=2))
+
+
 
