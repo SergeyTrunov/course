@@ -1,6 +1,8 @@
 документация по Git:
 http://git-scm.com/book
 
+git-scm.com/book/ru/Основы-Git-Запись-изменений-в-репозиторий
+
 закинуть файлы:
 git status
 add <file>
