@@ -6,9 +6,12 @@
 ## https://github.com/SergeyTrunov/course/tree/master/python/Lesson_3
 ##----------------------------------------------------------------------
 
+import types
 import random
 import string
 import json
+import math
+import time
 
 DEBUG = False # True # 
 
@@ -135,7 +138,7 @@ def random_phone_book(n):
         random_phone = random.randint(1000000,9999999)
         random_name = "".join(random.sample(string.ascii_letters,random.randint(4,10)))
         if random_phone not in phone:
-            phone.append(str(random_phone))
+            phone.append(random_phone)
             name.append(random_name)
             if DEBUG:
                 print(i, random_phone, random_name)
@@ -143,7 +146,7 @@ def random_phone_book(n):
     # записать в файл
     i = 0
     while i <= n:
-        f.write(phone[i] + ":" + name[i] + '\n')
+        f.write(str(phone[i]) + ":" + name[i] + '\n')
         i+=1
 
     f.close()
@@ -199,11 +202,59 @@ def book2sortlist(s):
     return d
      
 
-def get_name(phone):
+def get_name(book, phone):
     """
     get name abonent from phonebooks
     """
-    return "Ascfrex"
+    # поиск в словаре
+    if str(type(book)) == "<class 'dict'>":
+        abonent = book.get(str(phone))
+        return abonent
+    # поиск в списке
+    else:
+        for b in book:
+            if DEBUG:
+                print(b[0], phone, phone==b[0], b[1])
+            if b[0]==phone:
+                return b[1]
+   
+    return None
+
+def get_names(book, phone):
+    """
+    get name abonent from phonebooks sort by phone
+    """
+    # поиск в словаре
+    i_min = 0
+    i_max = len(book)
+    i = math.ceil(i_max / 2)
+
+    while book[i][0]!=phone:
+        #print(i, i_min, i_max, phone, book[i][0])
+        #input()
+
+        if book[i][0]==phone:
+            return book[i][1]
+
+        elif book[i][0] < phone:
+            i_min = i
+            i = i_min + math.ceil((i_max - i_min) / 2)
+
+        elif book[i][0] > phone:
+            i_max = i
+            i = i_min + math.ceil((i_max - i_min) / 2)
+        else:
+            print("что-то пошло не так")
+            return None
+
+        if i==i_min or i==i_max:
+            return None
+
+    if book[i][0]==phone:
+        return book[i][1]
+
+    return None
+
 
 
 #
@@ -241,20 +292,29 @@ def get_name(phone):
 
 
 # 3.4
-# random_phone_book(7)
+# random_phone_book(100000)
+# 4671529:JNvanVUxB
 
+phone = 9502198
 # 3.4а
-# b = book2dict('random_phone_book.dat')
-# print(json.dumps(b, sort_keys=True, indent=4))
+b = book2dict('random_phone_book.dat')
+#print(json.dumps(b, sort_keys=True, indent=4))
+run = time.clock()
+print(phone, get_name(b, phone), time.clock() - run)
+
 #
 # 3.4б
-# b = book2list('random_phone_book.dat')
+b = book2list('random_phone_book.dat')
+run = time.clock()
+print(phone, get_name(b, phone), time.clock() - run)
 # print(b)
 #
 # 3.4в
 b = book2sortlist('random_phone_book.dat')
+run = time.clock()
+print(phone, get_names(b, phone), time.clock() - run)
 # print(b)
-print(json.dumps(b, sort_keys=False, indent=2))
+# print(json.dumps(b, sort_keys=False, indent=2))
 
 
 
