@@ -101,3 +101,6 @@ CODE: SELECT ALL
 Сравните скорость поиска в трёх случаях 
 (придумайте сами методику, по которой можно сравнить скорость).
 
+
+http://www.ibm.com/developerworks/ru/library/l-python_details_03/
+
