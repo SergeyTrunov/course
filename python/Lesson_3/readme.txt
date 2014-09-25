@@ -110,3 +110,8 @@ CODE: SELECT ALL
 
 http://www.ibm.com/developerworks/ru/library/l-python_details_03/
 
+
+Задание 3.5.Для работы со всеми перечислимыми объектами Python 
+предлагает функции map и filter. Прочитайте про эти функции и реализуйте 
+сами собственные функции my_map и my_filter, которые работают точно так же как map и filter.
+

@@ -293,28 +293,58 @@ def get_names(book, phone):
 
 # 3.4
 # random_phone_book(100000)
-# 4671529:JNvanVUxB
 
-phone = 9502198
+# нужно взять какой-то телефончик из файла
+l = book2list('random_phone_book.dat')
+phone = l[random.randint(1,100000)][0]
+
 # 3.4а
 b = book2dict('random_phone_book.dat')
-#print(json.dumps(b, sort_keys=True, indent=4))
-run = time.clock()
-print(phone, get_name(b, phone), time.clock() - run)
+print(phone, get_name(b, phone))
 
 #
 # 3.4б
 b = book2list('random_phone_book.dat')
-run = time.clock()
-print(phone, get_name(b, phone), time.clock() - run)
-# print(b)
+print(phone, get_name(b, phone))
+
 #
 # 3.4в
 b = book2sortlist('random_phone_book.dat')
-run = time.clock()
-print(phone, get_names(b, phone), time.clock() - run)
-# print(b)
-# print(json.dumps(b, sort_keys=False, indent=2))
+print(phone, get_names(b, phone))
 
+# 3.4г
+# cравните скорость поиска в трёх случаях 
+# словарь
+d = book2dict('random_phone_book.dat')
+# список
+l = book2list('random_phone_book.dat')
+# сортированный список
+s = book2sortlist('random_phone_book.dat')
 
+f = 1000
+# r --- список из f/2 телефонов из книги и f/2 случайных чисел
+# для проверки скорости поиска как имеющихся записей, так и отсутствующих
+r1 = [ l[i*random.randint(1,int(2*100000/f))][0] for i in range(1,int(f/2))]
+r2 = [ random.randint(1,100000) for i in range(1,int(f/2))]
+r = r1 + r2
+r.sort()
+print("считаем время из", f, "поисков")
+t1 = 0
+t2 = 0
+t3 = 0
+for i in r:
+    last_time = time.clock()
+    get_name(d, i)
+    t1 += time.clock() - last_time
+    get_name(l, i)
+    t2 += time.clock() - last_time
+    get_names(s, i)
+    t3 += time.clock() - last_time
+print("словарь: ", t1)
+print("список, поиск до совпадения: ", t2)
+print("сорторованный список, поиск прыжками на середину", t3)
 
+#считаем время из 1000 поисков
+#словарь:  0.022206909598483777
+#список, поиск до совпадения:  13.72722528291388
+#сорторованный список, поиск прыжками на середину 13.789590617675572
