@@ -50,3 +50,4 @@ while input_number not in (my_number, 'Q'):
         print("а это непохоже на число от 1 до 100 (для выхода введите Q)") 						  
 
 
+# сдал
