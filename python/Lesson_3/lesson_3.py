@@ -12,6 +12,7 @@ import string
 import json
 import math
 import time
+import string
 
 DEBUG = False # True # 
 
@@ -23,6 +24,9 @@ def is_number(x):
     list_x = list(str(x))
     if DEBUG:
         print(x, list_x)
+
+    if list_x.count('.') > 1:
+        return False
 
     for i in range(len(list_x)):
         if   list_x[i]=='0':
@@ -47,7 +51,7 @@ def is_number(x):
             continue
         elif list_x[i]=='.':
             continue
-        elif list_x[i]=='-':
+        elif list_x[i]=='-' and i==0:
             continue
         #elif list_x[i]==' ':
         #    continue
@@ -262,11 +266,16 @@ def get_names(book, phone):
 #
 
 # 3.1 (в рамках задания)
-# print("-234.12 is number: ", is_number("-234.12"))
-# print("asdf is number: ", is_number("asdf"))
-# print("2,44 is number: ", is_number("2,44"))
-# print("12 304.22 is number: ", is_number("12 304.22"))
-# print("+1.06 is number: ", is_number("+1.06"))
+print("-234.12 is number: ", is_number("-234.12"))
+print("asdf is number: ", is_number("asdf"))
+print("2,44 is number: ", is_number("2,44"))
+print("12 304.22 is number: ", is_number("12 304.22"))
+print("+1.06 is number: ", is_number("+1.06"))
+print("+123.4.5 is number: ", is_number("123.4.5"))
+print("-12 is number: ", is_number("-12"))
+print("--12 is number: ", is_number("--12"))
+print("1-2 is number: ", is_number("1-2"))
+
 #
 # -234.12 is number:  True
 # asdf is number:  False
@@ -295,54 +304,54 @@ def get_names(book, phone):
 # random_phone_book(100000)
 
 # нужно взять какой-то телефончик из файла
-l = book2list('random_phone_book.dat')
-phone = l[random.randint(1,100000)][0]
+# l = book2list('random_phone_book.dat')
+# phone = l[random.randint(1,100000)][0]
 
 # 3.4а
-b = book2dict('random_phone_book.dat')
-print(phone, get_name(b, phone))
+# b = book2dict('random_phone_book.dat')
+# print(phone, get_name(b, phone))
 
 #
 # 3.4б
-b = book2list('random_phone_book.dat')
-print(phone, get_name(b, phone))
+# b = book2list('random_phone_book.dat')
+# print(phone, get_name(b, phone))
 
 #
 # 3.4в
-b = book2sortlist('random_phone_book.dat')
-print(phone, get_names(b, phone))
+# b = book2sortlist('random_phone_book.dat')
+# print(phone, get_names(b, phone))
 
 # 3.4г
 # cравните скорость поиска в трёх случаях 
 # словарь
-d = book2dict('random_phone_book.dat')
+# d = book2dict('random_phone_book.dat')
 # список
-l = book2list('random_phone_book.dat')
+# l = book2list('random_phone_book.dat')
 # сортированный список
-s = book2sortlist('random_phone_book.dat')
+# s = book2sortlist('random_phone_book.dat')
 
-f = 1000
+# f = 1000
 # r --- список из f/2 телефонов из книги и f/2 случайных чисел
 # для проверки скорости поиска как имеющихся записей, так и отсутствующих
-r1 = [ l[i*random.randint(1,int(2*100000/f))][0] for i in range(1,int(f/2))]
-r2 = [ random.randint(1,100000) for i in range(1,int(f/2))]
-r = r1 + r2
-r.sort()
-print("считаем время из", f, "поисков")
-t1 = 0
-t2 = 0
-t3 = 0
-for i in r:
-    last_time = time.clock()
-    get_name(d, i)
-    t1 += time.clock() - last_time
-    get_name(l, i)
-    t2 += time.clock() - last_time
-    get_names(s, i)
-    t3 += time.clock() - last_time
-print("словарь: ", t1)
-print("список, поиск до совпадения: ", t2)
-print("сорторованный список, поиск прыжками на середину", t3)
+# r1 = [ l[i*random.randint(1,int(2*100000/f))][0] for i in range(1,int(f/2))]
+# r2 = [ random.randint(1,100000) for i in range(1,int(f/2))]
+# r = r1 + r2
+# r.sort()
+# print("считаем время из", f, "поисков")
+# t1 = 0
+# t2 = 0
+# t3 = 0
+# for i in r:
+#     last_time = time.clock()
+#     get_name(d, i)
+#     t1 += time.clock() - last_time
+#     get_name(l, i)
+#     t2 += time.clock() - last_time
+#     get_names(s, i)
+#     t3 += time.clock() - last_time
+# print("словарь: ", t1)
+# print("список, поиск до совпадения: ", t2)
+# print("сорторованный список, поиск прыжками на середину", t3)
 
 #считаем время из 1000 поисков
 #словарь:  0.022206909598483777
